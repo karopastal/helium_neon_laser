@@ -1,0 +1,63 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from lmfit import Model
+from skimage.measure import profile_line
+from skimage import io
+
+mod = io.imread('imgs/5new.tiff', as_gray=True)
+
+mod_line = [(mod.shape[0]//2, 0), (mod.shape[0]//2, mod.shape[1])]
+# mod_line = [(0, mod.shape[1]/2), (mod.shape[0], mod.shape[1]/2)]
+
+mod_profile = profile_line(mod, mod_line[0], mod_line[1])
+
+print(mod.shape)
+print(mod_profile.shape)
+
+
+def mod_function(x, a, b, w, d):
+    var_x = ((x-b)/w)
+    part_1 = ((np.sqrt(2)*var_x)**5 - 10*(np.sqrt(2)*var_x)**3 + 15*(np.sqrt(2)*var_x))
+    part_2 = np.exp(-1*var_x**2)
+
+    expression = a*(part_1**2)*part_2 + d
+
+    return expression
+
+
+a_init = 0.05
+b_init = 2500
+w_init = 500
+d_init = 0
+
+mod_model = Model(mod_function)
+
+x = np.arange(mod_profile.shape[0])
+
+x_mod_outliers = np.concatenate([np.arange(965, 1680),
+                                 np.arange(1870, 2255),
+                                 np.arange(2385, 2730),
+                                 np.arange(2885, 3190),
+                                 np.arange(3390, 3690),
+                                 np.arange(3955, 4490)])
+
+# x_mod_outliers = []
+
+print(mod_profile)
+print("outliers: ", x_mod_outliers)
+x_mod = np.delete(x, x_mod_outliers)
+
+result = mod_model.fit(mod_profile[x_mod], x=x[x_mod], a=a_init, b=b_init, w=w_init, d=d_init)
+
+print(result.fit_report())
+
+a = result.params['a'].value
+b = result.params['b'].value
+w = result.params['w'].value
+d = result.params['d'].value
+
+plt.plot(x[x_mod], mod_profile[x_mod], 'o')
+plt.plot(x, mod_function(x, a_init, b_init, w_init, d_init), 'k--', label='initial fit')
+plt.plot(x, mod_function(x, a, b, w, d), 'r-', label='best fit')
+plt.legend(loc='best')
+plt.show()
