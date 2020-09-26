@@ -5,7 +5,7 @@ from skimage.measure import profile_line
 from skimage import io
 
 
-mod01 = io.imread('imgs/1nnew.tiff', as_gray=True)
+mod01 = io.imread('imgs/laser_modes/1nnew.tiff', as_gray=True)
 mod_01_line = [(0, mod01.shape[1]/2), (mod01.shape[0], mod01.shape[1]/2)]
 mod_01_profile = profile_line(mod01, mod_01_line[0], mod_01_line[1])
 

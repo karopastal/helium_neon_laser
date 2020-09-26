@@ -5,7 +5,7 @@ from skimage.measure import profile_line
 from skimage import io
 
 # mod02 = io.imread('imgs/02 2.tiff', as_gray=True)
-mod02 = io.imread('/Users/talpaskaro/studio/physics/labc/imgs/2 new2.tiff', as_gray=True)
+mod02 = io.imread('imgs/laser_modes/2 new2.tiff', as_gray=True)
 # print(mod02[0], mod02[-1])
 
 mod_02_line = [(mod02.shape[0]//2, 0), (mod02.shape[0]//2, mod02.shape[1])]

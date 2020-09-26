@@ -4,7 +4,7 @@ from lmfit import Model
 from skimage.measure import profile_line
 from skimage import io
 
-mod = io.imread('imgs/5new.tiff', as_gray=True)
+mod = io.imread('imgs/laser_modes/5new.tiff', as_gray=True)
 
 mod_line = [(mod.shape[0]//2, 0), (mod.shape[0]//2, mod.shape[1])]
 # mod_line = [(0, mod.shape[1]/2), (mod.shape[0], mod.shape[1]/2)]
