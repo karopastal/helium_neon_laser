@@ -1,9 +1,5 @@
 import os
 import pprint
-import numpy as np
-import matplotlib.pyplot as plt
-from skimage.measure import profile_line
-from skimage import io
 
 pp = pprint.PrettyPrinter(indent=2)
 path = 'imgs/coherence_length'
