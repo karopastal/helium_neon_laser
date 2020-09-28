@@ -38,32 +38,68 @@ def plot_profile(item, profile):
 
 def get_profile_line(scan, distance):
     profile_lines = {
-        '0.0': [(2650, 0), (2650, scan.shape[0])],
-        '0.5': [(0, 2500), (scan.shape[1], 2500)],
-        '4.0': [(1279, 780), (2012, 1712)],
-        '5.0': [(992, 1145), (2000, 1613)],
-        '7.0': [(3795, 885), (4517, 1723)],
-        '9.0': [(3783, 790), (4566, 1778)],
+        '0.0': [(2453, 1197), (2353, 1118)],
+        '0.5': [(1643, 2450), (1537, 2403)],
+        '4.0': [(1698, 1458), (1645, 1403)],
+        '5.0': [(1665, 1456), (1608, 1427)],
+        '7.0': [(4259, 1420), (4212, 1368)],
+        '9.0': [(4208, 1324), (4170, 1275)],
     }
 
     return profile_lines[distance]
 
 
-for item in mode:
-    print(item)
+def plot_scans():
+    for item in mode:
+        print(item)
 
-    scan = io.imread(item['path'], as_gray=False)
-    print(scan.shape)
+        scan = io.imread(item['path'], as_gray=False)
+        print(scan.shape)
 
-    scan_line = get_profile_line(scan, str(item['x']))
-    scan_profile = profile_line(scan, scan_line[0], scan_line[1])
-    cv2.line(scan, scan_line[0], scan_line[1], (255, 0, 0), 10)
+        scan_line = get_profile_line(scan, str(item['x']))
+        scan_profile = profile_line(scan, scan_line[0], scan_line[1])
+        cv2.line(scan, scan_line[0], scan_line[1], (255, 0, 0), 10)
 
-    plot_image(item, scan)
-    plot_profile(item, scan_profile)
+        plot_image(item, scan)
+        plot_profile(item, scan_profile)
 
 
+def calculate_dist(points):
+    return np.linalg.norm(np.array(points[0]) - np.array(points[1]))
 
+
+def plot_graph():
+    data_points = {
+        '0.0': [(2453, 1197), (2353, 1118)],
+        '0.5': [(1643, 2450), (1537, 2403)],
+        '4.0': [(1698, 1458), (1645, 1403)],
+        '5.0': [(1665, 1456), (1608, 1427)],
+        '7.0': [(4259, 1420), (4212, 1368)],
+        '9.0': [(4208, 1324), (4170, 1275)],
+    }
+
+    distances = []
+    fringes = []
+
+    for x in data_points:
+        distances.append(float(x))
+        fringes.append(calculate_dist(data_points[x]))
+
+    print(fringes)
+    print(distances)
+
+    """ add fit to linear model """
+
+    plt.title('fringe vs distance' % (), fontsize=14)
+    plt.xlabel('X', fontsize=15)
+    plt.ylabel('Y', fontsize=15)
+
+    plt.plot(distances, fringes, 'bo')
+    plt.show()
+
+
+plot_graph()
+# plot_scans()
 
 
 
