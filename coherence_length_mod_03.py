@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
-from skimage.draw import line_aa
 from skimage.measure import profile_line
 from skimage import io
 from coherence_length_data import data
+from lmfit import Model
 
 modes = data()
 mode = modes['3']
@@ -68,6 +68,10 @@ def plot_scans():
         plot_profile(item, scan_profile)
 
 
+def linear(x, a, b):
+    return a*x + b
+
+
 def calculate_dist(points):
     return np.linalg.norm(np.array(points[0]) - np.array(points[1]))
 
@@ -93,16 +97,34 @@ def plot_graph():
         distances.append(float(x))
         fringes.append(calculate_dist(data_points[x]))
 
+    distances = np.array(distances)
+    fringes = np.array(fringes)
+
     print(fringes)
     print(distances)
 
     """ add fit to linear model """
+    linear_model = Model(linear)
+
+    result = linear_model.fit(fringes, x=distances, a=1, b=1)
+
+    a = result.params['a'].value
+    b = result.params['b'].value
+
+    a_err = result.params['a'].stderr
+
+    print(result.fit_report())
+    print(result.chisqr)
+
+    """  ---------------------- """
 
     plt.title('fringe vs distance' % (), fontsize=14)
     plt.xlabel('X', fontsize=15)
     plt.ylabel('Y', fontsize=15)
 
     plt.plot(distances, fringes, 'bo')
+    plt.plot(distances, linear(distances, 1, 1), 'k--', label='initial fit')
+    plt.plot(distances, linear(distances, a, b), 'r-', label='best fit')
     plt.show()
 
 
