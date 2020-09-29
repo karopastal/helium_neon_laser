@@ -65,8 +65,10 @@ def plot_scans():
 def calculate_dist(points):
     return np.linalg.norm(np.array(points[0]) - np.array(points[1]))
 
+
 def linear(x, a, b):
     return a*x + b
+
 
 def plot_graph():
     data_points = {
