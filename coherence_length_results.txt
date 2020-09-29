@@ -1,0 +1,96 @@
+---------------
+    MODE 00
+---------------
+
+[[Model]]
+    Model(linear)
+[[Fit Statistics]]
+    # fitting method   = leastsq
+    # function evals   = 6
+    # data points      = 7
+    # variables        = 2
+    chi-square         = 0.06110506
+    reduced chi-square = 0.01222101
+    Akaike info crit   = -29.1874950
+    Bayesian info crit = -29.2956747
+[[Variables]]
+    a: -0.03042540 +/- 0.00756833 (24.88%) (init = 1)
+    b:  0.76966619 +/- 0.07580483 (9.85%) (init = 1)
+[[Correlations]] (unreported correlations are < 0.100)
+    C(a, b) = -0.834
+coherence length :  25.296829503125476
+
+#################################################################################
+
+---------------
+    MODE 03
+---------------
+
+[[Model]]
+    Model(linear)
+[[Fit Statistics]]
+    # fitting method   = leastsq
+    # function evals   = 6
+    # data points      = 10
+    # variables        = 2
+    chi-square         = 0.09119503
+    reduced chi-square = 0.01139938
+    Akaike info crit   = -42.9733995
+    Bayesian info crit = -42.3682294
+[[Variables]]
+    a: -0.01351771 +/- 0.00333715 (24.69%) (init = 1)
+    b:  0.60776470 +/- 0.05036772 (8.29%) (init = 1)
+[[Correlations]] (unreported correlations are < 0.100)
+    C(a, b) = -0.742
+coherence length :  44.96062245456888
+
+#################################################################################
+
+---------------
+    MODE 04
+---------------
+
+[[Model]]
+    Model(linear)
+[[Fit Statistics]]
+    # fitting method   = leastsq
+    # function evals   = 6
+    # data points      = 13
+    # variables        = 2
+    chi-square         = 0.15498343
+    reduced chi-square = 0.01408940
+    Akaike info crit   = -53.5820238
+    Bayesian info crit = -52.4521251
+[[Variables]]
+    a: -0.02329257 +/- 0.00341175 (14.65%) (init = 1)
+    b:  0.70552139 +/- 0.05366791 (7.61%) (init = 1)
+[[Correlations]] (unreported correlations are < 0.100)
+    C(a, b) = -0.790
+coherence length :  30.289541728925105
+
+#################################################################################
+
+---------------
+    MODE 31
+---------------
+
+[[Model]]
+    Model(linear)
+[[Fit Statistics]]
+    # fitting method   = leastsq
+    # function evals   = 6
+    # data points      = 6
+    # variables        = 2
+    chi-square         = 0.02752530
+    reduced chi-square = 0.00688132
+    Akaike info crit   = -28.3064559
+    Bayesian info crit = -28.7229370
+[[Variables]]
+    a: -0.03034532 +/- 0.01046157 (34.48%) (init = 1)
+    b:  0.59830724 +/- 0.05589033 (9.34%) (init = 1)
+[[Correlations]] (unreported correlations are < 0.100)
+    C(a, b) = -0.796
+coherence length :  19.716620508946008
+
+#################################################################################
+

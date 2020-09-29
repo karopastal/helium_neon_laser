@@ -140,7 +140,7 @@ def plot_graph():
     plt.errorbar(distances, fringes, xerr=distances_err, fmt='.k', capthick=2, label='uncertainties')
     plt.plot(distances, linear(distances, a, b), 'r-', label='fit')
     plt.legend(loc='best')
-    plt.show()
+    # plt.show()
 
 
 plot_graph()
