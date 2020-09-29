@@ -56,8 +56,17 @@ b = result.params['b'].value
 w = result.params['w'].value
 d = result.params['d'].value
 
-plt.plot(x[x_mod], mod_profile[x_mod], 'o')
-plt.plot(x, mod_function(x, a_init, b_init, w_init, d_init), 'k--', label='initial fit')
-plt.plot(x, mod_function(x, a, b, w, d), 'r-', label='best fit')
+# plt.plot(x[x_mod], mod_profile[x_mod], 'o')
+# plt.plot(x, mod_function(x, a_init, b_init, w_init, d_init), 'k--', label='initial fit')
+# plt.plot(x, mod_function(x, a, b, w, d), 'r-', label='best fit')
+# plt.legend(loc='best')
+# plt.show()
+
+plt.plot(x[x_mod], mod_profile[x_mod], 'bo', label='profile line')
+plt.plot(x[x_mod_outliers], mod_profile[x_mod_outliers], 'ko', label='excluded saturation')
+plt.plot(x, mod_function(x, a, b, w, d), 'r-', label='fit')
+plt.title('mode 50' % (), fontsize=14)
+plt.xlabel('X (pixels)', fontsize=15)
+plt.ylabel('Intensity (A.U)', fontsize=15)
 plt.legend(loc='best')
 plt.show()
